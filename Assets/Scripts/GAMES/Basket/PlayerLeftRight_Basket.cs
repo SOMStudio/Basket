@@ -3,15 +3,19 @@
 public class PlayerLeftRight_Basket : ExtendedCustomMonoBehaviour2D {
 
 	[Header("Main")]
-	public float speedMove = 20f;
+	[SerializeField]
+	private float speedMove = 20f;
 
-	public Transform clipingLeftPos;
-	public Transform clipingRightPos;
+	[SerializeField]
+	private Transform clipingLeftPos;
+	[SerializeField]
+	private Transform clipingRightPos;
 
 	private Vector3 myStartPossition;
 
 	[Header("Input Controller")]
-	public UI_Input_Rotate2Way inputController;
+	[SerializeField]
+	private UI_Input_Rotate2Way inputController;
 
 	// main event
 	void Awake() {

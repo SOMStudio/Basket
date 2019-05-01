@@ -2,10 +2,11 @@
 
 public class PlayerManager_Basket : BasePlayerManager {
 
-	public PlayerLeftRight_Basket playerLeftRight;
+	[SerializeField]
+	private PlayerLeftRight_Basket playerLeftRight;
 
 	// main event
-	void Start () {		// init Player Data
+	void Start () {
 		DataManager.SetName ("Player");
 		DataManager.SetScore (0);
 	}

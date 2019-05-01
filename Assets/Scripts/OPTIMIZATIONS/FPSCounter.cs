@@ -5,9 +5,12 @@ namespace UnityStandardAssets.Utility
 {
     public class FPSCounter : MonoBehaviour
     {
-		public Text m_Text;
-		public Text min_Text;
-		public Text max_Text;
+		[SerializeField]
+		private Text m_Text;
+		[SerializeField]
+		private Text min_Text;
+		[SerializeField]
+		private Text max_Text;
 
         const float fpsMeasurePeriod = 0.5f;
         private int m_FpsAccumulator = 0;
@@ -16,13 +19,15 @@ namespace UnityStandardAssets.Utility
 		private int minFPS = -1;
 		private int maxFPS = -1;
 
-        private void Start()
+		// main event
+
+        void Start()
         {
             m_FpsNextPeriod = Time.realtimeSinceStartup + fpsMeasurePeriod;
         }
 
 
-        private void Update()
+        void Update()
         {
             // measure average frames per second
             m_FpsAccumulator++;
@@ -52,5 +57,7 @@ namespace UnityStandardAssets.Utility
 				}
             }
         }
+
+		// main logic
     }
 }

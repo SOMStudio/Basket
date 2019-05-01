@@ -3,8 +3,10 @@ using UnityEngine.UI;
 
 public class MenuManager_Basket : MonoBehaviour {
 
-	public Text textTimer;
-	public Text textScore;
+	[SerializeField]
+	private Text textTimer;
+	[SerializeField]
+	private Text textScore;
 
 	[System.NonSerialized]
 	public static MenuManager_Basket Instance;

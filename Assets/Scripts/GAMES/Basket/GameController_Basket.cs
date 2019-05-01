@@ -80,7 +80,7 @@ public class GameController_Basket : BaseGameController {
 		// chack playerManager ref
 		if (playerManager) {
 			// set ref playerData
-			playerData = playerManager.DataManager;
+			playerData = playerManager.GetDataManager();
 
 			// set can controll for InputControlle
 			playerManager.StartPlay ();
@@ -193,7 +193,7 @@ public class GameController_Basket : BaseGameController {
 	}
 
 	// menu Manager
-	public void Update_UI() {
+	private void Update_UI() {
 		UpdateScore_UI();
 		UpdateTimer_UI();
 	}

@@ -2,7 +2,8 @@
 
 public class DropObject_Manager : MonoBehaviour {
 
-	public int bonus = 0;
+	[SerializeField]
+	private int bonus = 0;
 
 	// main event
 	void Start() {
