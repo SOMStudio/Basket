@@ -3,15 +3,18 @@ using UnityEngine.UI;
 
 public class MenuManager_Basket : MonoBehaviour {
 
+	[Header("Game Settings")]
 	[SerializeField]
 	private Text textTimer;
 	[SerializeField]
 	private Text textScore;
 
+	[Header("Game Controller Ref")]
+	[SerializeField]
+	private GameController_Basket gameController;
+
 	[System.NonSerialized]
 	public static MenuManager_Basket Instance;
-
-	private GameController_Basket gameController;
 
 	// main event
 	void Awake () {

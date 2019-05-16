@@ -5,6 +5,9 @@ public class PlayerManager_Basket : BasePlayerManager {
 	[SerializeField]
 	private PlayerLeftRight_Basket playerLeftRight;
 
+	[System.NonSerialized]
+	public static PlayerManager_Basket Instance;
+
 	// main event
 	void Start () {
 		DataManager.SetName ("Player");
@@ -12,6 +15,19 @@ public class PlayerManager_Basket : BasePlayerManager {
 	}
 
 	// main logic
+	public override void Init ()
+	{
+		// activate instance
+		if (Instance == null) {
+			Instance = this;
+
+			if (!didInit)
+				base.Init ();
+		} else if (Instance != this) {
+			Destroy (gameObject);
+		}
+	}
+
 	public void StartPlay() {
 		if (playerLeftRight) {
 			playerLeftRight.CanControll (true);
@@ -28,5 +44,9 @@ public class PlayerManager_Basket : BasePlayerManager {
 		if (playerLeftRight) {
 			playerLeftRight.SetInStartPos ();
 		}
+	}
+
+	public BaseUserManager Data {
+		get { return DataManager; }
 	}
 }

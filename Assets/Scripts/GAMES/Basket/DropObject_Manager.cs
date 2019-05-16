@@ -9,8 +9,7 @@ public class DropObject_Manager : MonoBehaviour {
 	void Start() {
 		Destroy (gameObject, 2);
 	}
-
-	// main logic
+		
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Player") {
 			GameController_Basket.Instance.AddBonus (bonus);
@@ -18,4 +17,6 @@ public class DropObject_Manager : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	// main logic
 }

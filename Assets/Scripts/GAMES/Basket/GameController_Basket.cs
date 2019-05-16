@@ -2,12 +2,19 @@
 
 public class GameController_Basket : BaseGameController {
 
-	public GameObject[] spawnList;
-	public Transform[] spawnClip;
-	public float timeBetweaneSpawn = 2.0f; // time betweane spawn
-	public float timeFrequenceSpawn = 10; // time after decreace spawn time
-	public float timeDecreaceStep = 0.2f; // step decreace spawn
-	public float timeLimitBetweaneSpawn = 0.5f; // limit betweane spawn
+	[Header("Main Settings")]
+	[SerializeField]
+	private GameObject[] spawnList;
+	[SerializeField]
+	private Transform[] spawnClip;
+	[SerializeField]
+	private float timeBetweaneSpawn = 2.0f; // time betweane spawn
+	[SerializeField]
+	private float timeFrequenceSpawn = 10; // time after decreace spawn time
+	[SerializeField]
+	private float timeDecreaceStep = 0.2f; // step decreace spawn
+	[SerializeField]
+	private float timeLimitBetweaneSpawn = 0.5f; // limit betweane spawn
 
 	[SerializeField]
 	private bool startGame = false;
@@ -23,11 +30,13 @@ public class GameController_Basket : BaseGameController {
 	[System.NonSerialized]
 	public static GameController_Basket Instance;
 
-	[Header("managers")]
-	public MenuManager_Basket menuManager;
-	public PlayerManager_Basket playerManager;
-	public BaseUserManager playerData;
-	public BaseSoundController soundManager;
+	[Header("Managers")]
+	[SerializeField]
+	private MenuManager_Basket menuManager;
+	[SerializeField]
+	private PlayerManager_Basket playerManager;
+	[SerializeField]
+	private BaseSoundController soundManager;
 
 	// main event
 	void Awake () {
@@ -78,12 +87,8 @@ public class GameController_Basket : BaseGameController {
 		}
 
 		// chack playerManager ref
-		if (playerManager) {
-			// set ref playerData
-			playerData = playerManager.GetDataManager();
-
-			// set can controll for InputControlle
-			playerManager.StartPlay ();
+		if (!playerManager) {
+			playerManager = PlayerManager_Basket.Instance;
 		}
 
 		// init soundManager
@@ -97,6 +102,9 @@ public class GameController_Basket : BaseGameController {
 
 	public override void StartGame() {
 		startGame = true;
+
+		// set can controll for InputControlle
+		playerManager.StartPlay ();
 
 		// start Timer
 		theTimer.StartTimer ();
@@ -171,7 +179,7 @@ public class GameController_Basket : BaseGameController {
 	// Player Data
 	public void AddBonus(int val) {
 		// add score in Data
-		playerData.AddScore (val);
+		playerManager.Data.AddScore (val);
 
 		// update score UI
 		Update_UI ();
@@ -186,7 +194,7 @@ public class GameController_Basket : BaseGameController {
 
 	private void ClearBonus() {
 		// clear score in Data
-		playerData.SetScore (0);
+		playerManager.Data.SetScore (0);
 
 		// update score UI
 		Update_UI ();
@@ -199,7 +207,7 @@ public class GameController_Basket : BaseGameController {
 	}
 
 	private void UpdateScore_UI() {
-		menuManager.UpdateScore (playerData.GetScore ());
+		menuManager.UpdateScore (playerManager.Data.GetScore ());
 	}
 
 	private void UpdateTimer_UI() {
