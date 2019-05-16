@@ -37,10 +37,6 @@ public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDr
 		// set horz
 		horz = angleRes / rotateAngleClump * -1;
 
-		// set up some boolean values left and right
-		Left	= ( horz<0 );
-		Right	= ( horz>0 );
-
 		// rotate object
 		myTransform.eulerAngles = new Vector3(0, 0, crosX * crosY * angle);
 	}
@@ -50,9 +46,5 @@ public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDr
 
 		// set horz
 		horz = 0f;
-
-		// set up some boolean values for left and right
-		Left	= ( horz<0 );
-		Right	= ( horz>0 );
 	}
 }

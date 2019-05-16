@@ -27,10 +27,6 @@ public class UI_Input_Slide2Way : BaseInputController, IPointerDownHandler, IDra
 		// set horz
 		horz = distanceToPoint / slideClump;
 
-		// set up some boolean values left and right
-		Left	= (horz < 0);
-		Right	= (horz > 0);
-
 		// rotate object
 		myTransform.position = new Vector3 (startPossition.x + distanceToPoint, myTransform.position.y, myTransform.position.z);
 	}
@@ -40,9 +36,5 @@ public class UI_Input_Slide2Way : BaseInputController, IPointerDownHandler, IDra
 
 		// set horz
 		horz = 0f;
-
-		// set up some boolean values for left and right
-		Left	= ( horz<0 );
-		Right	= ( horz>0 );
 	}
 }
