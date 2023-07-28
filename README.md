@@ -21,6 +21,6 @@ Additional:
 3) Added sounds when capturing items.
 4) Pause / Continue the game when you press Esc.
 
-## Unity 5.6.2
+## Unity 1019
 
 ![Basket](screenshot.png)
