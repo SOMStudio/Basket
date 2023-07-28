@@ -1,50 +1,51 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler {
-
+public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler
+{
 	[Header("Rotate Clump")]
 	public float rotateAngleClump = 25f;
 
 	private Transform myTransform;
-	private Vector2 startPossition;
-
-	// main event
-	void Start () {
+	private Vector2 startPosition;
+	
+	private void Start()
+	{
 		myTransform = transform;
 
-		startPossition = new Vector2(myTransform.position.x, myTransform.position.y);
+		startPosition = new Vector2(myTransform.position.x, myTransform.position.y);
 	}
 
-	public void OnPointerDown (PointerEventData data) {
-		
+	public void OnPointerDown(PointerEventData data)
+	{
+
 	}
 
-	public void OnDrag(PointerEventData data) {
-		Vector2 vectToPoint = data.position - startPossition;
-		Vector2 posNew = new Vector2 (Mathf.Abs(vectToPoint.x), Mathf.Abs(vectToPoint.y));
+	public void OnDrag(PointerEventData data)
+	{
+		Vector2 vectorToPoint = data.position - startPosition;
+		Vector2 posNew = new Vector2(Mathf.Abs(vectorToPoint.x), Mathf.Abs(vectorToPoint.y));
 
-		int crosX = vectToPoint.x > 0 ? 1 : -1;
-		int crosY = vectToPoint.y > 0 ? 1 : -1;
-		float angle = Vector2.Angle (Vector2.right, posNew);
+		int crosX = vectorToPoint.x > 0 ? 1 : -1;
+		int crosY = vectorToPoint.y > 0 ? 1 : -1;
+		float angle = Vector2.Angle(Vector2.right, posNew);
 
-		if (angle > rotateAngleClump) {
+		if (angle > rotateAngleClump)
+		{
 			angle = rotateAngleClump;
 		}
 
 		float angleRes = crosX * crosY * angle;
-
-		// set horz
+		
 		horz = angleRes / rotateAngleClump * -1;
-
-		// rotate object
+		
 		myTransform.eulerAngles = new Vector3(0, 0, crosX * crosY * angle);
 	}
 
-	public void OnPointerUp (PointerEventData data) {
+	public void OnPointerUp(PointerEventData data)
+	{
 		myTransform.eulerAngles = Vector3.zero;
-
-		// set horz
+		
 		horz = 0f;
 	}
 }

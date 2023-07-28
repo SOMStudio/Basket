@@ -30,13 +30,13 @@ public class PlayerManager_Basket : BasePlayerManager {
 
 	public void StartPlay() {
 		if (playerLeftRight) {
-			playerLeftRight.CanControll (true);
+			playerLeftRight.CanControl (true);
 		}
 	}
 
 	public void StopPlay() {
 		if (playerLeftRight) {
-			playerLeftRight.CanControll (false);
+			playerLeftRight.CanControl (false);
 		}
 	}
 
