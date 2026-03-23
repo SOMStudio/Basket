@@ -25,11 +25,9 @@ public class UI_Input_Slide2Way : BaseInputController, IPointerDownHandler, IDra
 	public void OnDrag(PointerEventData data)
 	{
 		float distanceToPoint = Mathf.Clamp(data.position.x - startPosition.x, -slideClump, slideClump);
-
-		// set horz
+		
 		horz = distanceToPoint / slideClump;
-
-		// rotate object
+		
 		myTransform.position = new Vector3(startPosition.x + distanceToPoint, myTransform.position.y,
 			myTransform.position.z);
 	}

@@ -29,7 +29,6 @@ public class GameController_Basket : BaseGameController
 
 	private void Awake()
 	{
-		// activate instance
 		if (Instance == null)
 		{
 			Instance = this;
@@ -42,13 +41,10 @@ public class GameController_Basket : BaseGameController
 
 	private void Start()
 	{
-		// init game
 		InitGame();
-
-		// create Menu
+		
 		Update_UI();
-
-		// start game
+		
 		StartGame();
 	}
 
@@ -56,59 +52,47 @@ public class GameController_Basket : BaseGameController
 	{
 		if (startGame && !Paused)
 		{
-			// global time for frequency spawn
 			theTimer.UpdateTimer();
 			int curTime = theTimer.GetTime();
-
-			// time for Spawn
+			
 			timePlay += Time.deltaTime;
-
-			// spawn Manager
+			
 			SpawnManager(timePlay);
-
-			// delay increase spawn frequency
+			
 			SpawnFrequentManager(curTime);
-
-			// update time Timer
+			
 			UpdateTimer_UI();
 		}
 	}
 	
 	private void InitGame()
 	{
-		// init menuManager ref
 		if (!menuManager)
 		{
 			menuManager = MenuManager_Basket.Instance;
 		}
-
-		// check playerManager ref
+		
 		if (!playerManager)
 		{
 			playerManager = PlayerManager_Basket.Instance;
 		}
-
-		// init soundManager
+		
 		if (!soundManager)
 		{
 			soundManager = BaseSoundController.Instance;
 		}
-
-		// initialize a timer
+		
 		theTimer = ScriptableObject.CreateInstance<TimerClass>();
 	}
 
 	public override void StartGame()
 	{
 		startGame = true;
-
-		// set can control for InputController
+		
 		playerManager.StartPlay();
-
-		// start Timer
+		
 		theTimer.StartTimer();
-
-		// get time
+		
 		timePlay = 0.0f;
 		lastSpawnTime = timePlay;
 		betweenSpawnTime = timeBetweenSpawn;
@@ -118,20 +102,16 @@ public class GameController_Basket : BaseGameController
 	public void RestartGame()
 	{
 		startGame = true;
-
-		// reset Timer
+		
 		theTimer.ResetTimer();
-
-		// get time
+		
 		timePlay = 0.0f;
 		lastSpawnTime = timePlay;
 		betweenSpawnTime = timeBetweenSpawn;
 		lastFrequencySpawnTime = theTimer.GetTime();
-
-		// clear progress
+		
 		ClearBonus();
-
-		// player in startPos
+		
 		playerManager.SetPlayerInStartPos();
 	}
 
@@ -190,13 +170,10 @@ public class GameController_Basket : BaseGameController
 	
 	public void AddBonus(int val)
 	{
-		// add score in Data
 		playerManager.Data.AddScore(val);
-
-		// update score UI
+		
 		Update_UI();
-
-		// play sound
+		
 		if (val > 0)
 		{
 			IncreaseScore_Sound();
@@ -209,10 +186,8 @@ public class GameController_Basket : BaseGameController
 
 	private void ClearBonus()
 	{
-		// clear score in Data
 		playerManager.Data.SetScore(0);
-
-		// update score UI
+		
 		Update_UI();
 	}
 	

@@ -16,10 +16,9 @@ public class ExtendedCustomMonoBehaviour2D : MonoBehaviour
 	{
 		Init();
 	}
-	
-	public virtual void Init()
+
+	protected virtual void Init()
 	{
-		// cache refs to our transform and gameObject
 		if (!myTransform)
 		{
 			myTransform = transform;
