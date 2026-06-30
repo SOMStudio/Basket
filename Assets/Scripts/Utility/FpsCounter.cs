@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[AddComponentMenu("Utility/FPS counter")]
-public class FPSCounter : MonoBehaviour
+[AddComponentMenu("SOMStudio/Basket/Utility/FPS Counter")]
+public class FpsCounter : MonoBehaviour
 {
 	[Header("Settings")]
-	[SerializeField] private Text m_Text;
-	[SerializeField] private Text min_Text;
-	[SerializeField] private Text max_Text;
+	[SerializeField] private Text fpsText;
+	[SerializeField] private Text minFpsText;
+	[SerializeField] private Text maxFpsText;
 
 	private const float FPSMeasurePeriod = 0.5f;
-	private int mFpsAccumulator = 0;
-	private float mFpsNextPeriod = 0;
+	private int mFpsAccumulator;
+	private float mFpsNextPeriod;
 	private int mCurrentFps;
 	private int minFPS = -1;
 	private int maxFPS = -1;
@@ -47,11 +47,11 @@ public class FPSCounter : MonoBehaviour
 			mFpsAccumulator = 0;
 			mFpsNextPeriod += FPSMeasurePeriod;
 
-			if (m_Text != null)
+			if (fpsText != null)
 			{
-				m_Text.text = $"FPS:{mCurrentFps}";
-				min_Text.text = $"minFPS:{minFPS}";
-				max_Text.text = $"maxFPS:{maxFPS}";
+				fpsText.text = $"FPS:{mCurrentFps}";
+				minFpsText.text = $"minFPS:{minFPS}";
+				maxFpsText.text = $"maxFPS:{maxFPS}";
 			}
 		}
 	}

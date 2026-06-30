@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[AddComponentMenu("Common/Timer class")]
-public class TimerClass : ScriptableObject
+public class TimerClass
 {
 	public bool isTimerRunning;
 

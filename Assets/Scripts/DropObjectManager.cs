@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class DropObject_Manager : MonoBehaviour
+[AddComponentMenu("SOMStudio/Basket/Drop Object Manager")]
+public class DropObjectManager : MonoBehaviour
 {
 	[SerializeField] private int bonus = 0;
 
@@ -11,9 +12,9 @@ public class DropObject_Manager : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.tag == "Player")
+		if (col.CompareTag("Player"))
 		{
-			GameController_Basket.Instance.AddBonus(bonus);
+			GameController.Instance.AddBonus(bonus);
 
 			Destroy(gameObject);
 		}

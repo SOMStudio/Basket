@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 
-public class PlayerManager_Basket : BasePlayerManager {
+[AddComponentMenu("SOMStudio/Basket/Player Manager")]
+public class PlayerManager : BasePlayerManager {
 
 	[SerializeField]
-	private PlayerLeftRight_Basket playerLeftRight;
+	private PlayerLeftRight playerLeftRight;
 
 	[System.NonSerialized]
-	public static PlayerManager_Basket Instance;
+	public static PlayerManager Instance;
 	
 	void Start () {
-		DataManager.SetName ("Player");
-		DataManager.SetScore (0);
+		dataManager.SetName ("Player");
+		dataManager.SetScore (0);
 	}
 
 	public override void Init()
@@ -45,5 +46,5 @@ public class PlayerManager_Basket : BasePlayerManager {
 		}
 	}
 
-	public BaseUserManager Data => DataManager;
+	public BaseUserManager Data => dataManager;
 }

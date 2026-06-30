@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuManager_Basket : MonoBehaviour
+[AddComponentMenu("SOMStudio/Basket/Menu Manager")]
+public class MenuManager : MonoBehaviour
 {
 	[Header("Game Settings")]
 	[SerializeField] private Text textTimer;
@@ -9,9 +10,9 @@ public class MenuManager_Basket : MonoBehaviour
 	[SerializeField] private Text textScore;
 
 	[Header("Game Controller Ref")]
-	[SerializeField] private GameController_Basket gameController;
+	[SerializeField] private GameController gameController;
 
-	[System.NonSerialized] public static MenuManager_Basket Instance;
+	[System.NonSerialized] public static MenuManager Instance;
 
 	private void Awake()
 	{
@@ -29,7 +30,7 @@ public class MenuManager_Basket : MonoBehaviour
 	{
 		if (!gameController)
 		{
-			gameController = GameController_Basket.Instance;
+			gameController = GameController.Instance;
 		}
 	}
 

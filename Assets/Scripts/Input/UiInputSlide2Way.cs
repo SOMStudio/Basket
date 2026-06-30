@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_Input_Slide2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class UiInputSlide2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
 	[Header("Slide Clump")]
 	public float slideClump = 100f;
@@ -26,7 +26,7 @@ public class UI_Input_Slide2Way : BaseInputController, IPointerDownHandler, IDra
 	{
 		float distanceToPoint = Mathf.Clamp(data.position.x - startPosition.x, -slideClump, slideClump);
 		
-		horz = distanceToPoint / slideClump;
+		horizontal = distanceToPoint / slideClump;
 		
 		myTransform.position = new Vector3(startPosition.x + distanceToPoint, myTransform.position.y,
 			myTransform.position.z);
@@ -36,6 +36,6 @@ public class UI_Input_Slide2Way : BaseInputController, IPointerDownHandler, IDra
 	{
 		myTransform.position = new Vector3(startPosition.x, myTransform.position.y, myTransform.position.z);
 		
-		horz = 0f;
+		horizontal = 0f;
 	}
 }

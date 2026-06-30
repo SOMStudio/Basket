@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class UiInputRotate2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
 	[Header("Rotate Clump")]
 	public float rotateAngleClump = 25f;
@@ -18,7 +18,6 @@ public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDr
 
 	public void OnPointerDown(PointerEventData data)
 	{
-
 	}
 
 	public void OnDrag(PointerEventData data)
@@ -37,7 +36,7 @@ public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDr
 
 		float angleRes = crosX * crosY * angle;
 		
-		horz = angleRes / rotateAngleClump * -1;
+		horizontal = angleRes / rotateAngleClump * -1;
 		
 		myTransform.eulerAngles = new Vector3(0, 0, crosX * crosY * angle);
 	}
@@ -46,6 +45,6 @@ public class UI_Input_Rotate2Way : BaseInputController, IPointerDownHandler, IDr
 	{
 		myTransform.eulerAngles = Vector3.zero;
 		
-		horz = 0f;
+		horizontal = 0f;
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class PlayerLeftRight_Basket : ExtendedCustomMonoBehaviour2D
+[AddComponentMenu("SOMStudio/Basket/Player Input Manager")]
+public class PlayerLeftRight : ExtendedCustomMonoBehaviour2D
 {
 	[Header("Main")]
 	[SerializeField] private float speedMove = 20f;
@@ -11,7 +12,7 @@ public class PlayerLeftRight_Basket : ExtendedCustomMonoBehaviour2D
 	private Vector3 myStartPosition;
 
 	[Header("Input Controller")]
-	[SerializeField] private UI_Input_Rotate2Way inputController;
+	[SerializeField] private UiInputRotate2Way inputController;
 	
 	private void Awake()
 	{

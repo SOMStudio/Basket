@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[AddComponentMenu("Base/GameController")]
 public class BaseGameController : MonoBehaviour
 {
 	bool paused;

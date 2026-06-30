@@ -9,7 +9,7 @@ public class ExtendedCustomMonoBehaviour2D : MonoBehaviour
 	protected int id;
 
 	protected Transform myTransform;
-	protected GameObject myGO;
+	protected GameObject myGameObject;
 	protected Rigidbody2D myBody;
 
 	private void Start()
@@ -24,9 +24,9 @@ public class ExtendedCustomMonoBehaviour2D : MonoBehaviour
 			myTransform = transform;
 		}
 
-		if (!myGO)
+		if (!myGameObject)
 		{
-			myGO = gameObject;
+			myGameObject = gameObject;
 		}
 
 		if (!myBody)

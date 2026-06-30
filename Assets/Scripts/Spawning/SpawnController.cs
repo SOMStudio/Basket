@@ -1,14 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("Utility/Spawn Controller")]
 public class SpawnController : ScriptableObject
 {
 	private ArrayList playerTransforms;
 	private ArrayList playerGameObjects;
 
 	private Transform tempTrans;
-	private GameObject tempGO;
+	private GameObject tempGameObject;
 
 	private GameObject[] playerPrefabList;
 	private Vector3[] startPositions;
@@ -33,7 +32,7 @@ public class SpawnController : ScriptableObject
 		{
 			if (instance == null)
 			{
-				CreateInstance<SpawnController>(); // new SpawnController ();
+				CreateInstance<SpawnController>();
 			}
 			
 			return instance;
@@ -89,18 +88,18 @@ public class SpawnController : ScriptableObject
 
 	public Transform Spawn(GameObject anObject, Vector3 aPosition, Quaternion aRotation)
 	{
-		tempGO = Instantiate(anObject, aPosition, aRotation);
-		tempTrans = tempGO.transform;
+		tempGameObject = Instantiate(anObject, aPosition, aRotation);
+		tempTrans = tempGameObject.transform;
 		
 		return tempTrans;
 	}
 	
 	public GameObject SpawnGO(GameObject anObject, Vector3 aPosition, Quaternion aRotation)
 	{
-		tempGO = Instantiate(anObject, aPosition, aRotation);
-		tempTrans = tempGO.transform;
+		tempGameObject = Instantiate(anObject, aPosition, aRotation);
+		tempTrans = tempGameObject.transform;
 		
-		return tempGO;
+		return tempGameObject;
 	}
 
 	public ArrayList GetAllSpawnedPlayers()

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class GameController_Basket : BaseGameController
+[AddComponentMenu("SOMStudio/Basket/Game Controller")]
+public class GameController : BaseGameController
 {
 	[Header("Main Settings")]
 	[SerializeField] private GameObject[] spawnList;
@@ -20,11 +21,11 @@ public class GameController_Basket : BaseGameController
 
 	private TimerClass theTimer;
 
-	[System.NonSerialized] public static GameController_Basket Instance;
+	[System.NonSerialized] public static GameController Instance;
 
 	[Header("Managers")]
-	[SerializeField] private MenuManager_Basket menuManager;
-	[SerializeField] private PlayerManager_Basket playerManager;
+	[SerializeField] private MenuManager menuManager;
+	[SerializeField] private PlayerManager playerManager;
 	[SerializeField] private BaseSoundController soundManager;
 
 	private void Awake()
@@ -69,12 +70,12 @@ public class GameController_Basket : BaseGameController
 	{
 		if (!menuManager)
 		{
-			menuManager = MenuManager_Basket.Instance;
+			menuManager = MenuManager.Instance;
 		}
 		
 		if (!playerManager)
 		{
-			playerManager = PlayerManager_Basket.Instance;
+			playerManager = PlayerManager.Instance;
 		}
 		
 		if (!soundManager)
@@ -82,7 +83,7 @@ public class GameController_Basket : BaseGameController
 			soundManager = BaseSoundController.Instance;
 		}
 		
-		theTimer = ScriptableObject.CreateInstance<TimerClass>();
+		theTimer = new TimerClass();
 	}
 
 	public override void StartGame()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[AddComponentMenu("Base/Sound Controller")]
+[AddComponentMenu("SOMStudio/Basket/Sound Controller")]
 public class BaseSoundController : MonoBehaviour
 {
 	[SerializeField] private string gamePrefsName = "DefaultGame";
