@@ -1,58 +1,63 @@
-﻿using UnityEngine;
+﻿using SOMStudio.Basket.Scripts.Base;
+using SOMStudio.Basket.Scripts.Input;
+using UnityEngine;
 
-[AddComponentMenu("SOMStudio/Basket/Player Input Manager")]
-public class PlayerLeftRight : ExtendedCustomMonoBehaviour2D
+namespace SOMStudio.Basket.Scripts
 {
-	[Header("Main")]
-	[SerializeField] private float speedMove = 20f;
+	[AddComponentMenu("SOMStudio/Basket/Player Input Manager")]
+	public class PlayerLeftRight : ExtendedCustomMonoBehaviour2D
+	{
+		[Header("Main")]
+		[SerializeField] private float speedMove = 20f;
 
-	[SerializeField] private Transform clippingLeftPos;
-	[SerializeField] private Transform clippingRightPos;
+		[SerializeField] private Transform clippingLeftPos;
+		[SerializeField] private Transform clippingRightPos;
 
-	private Vector3 myStartPosition;
+		private Vector3 myStartPosition;
 
-	[Header("Input Controller")]
-	[SerializeField] private UiInputRotate2Way inputController;
+		[Header("Input Controller")]
+		[SerializeField] private UiInputRotate2Way inputController;
 	
-	private void Awake()
-	{
-		base.Init();
-	}
-
-	private void Start()
-	{
-		if (!inputController || !clippingLeftPos || !clippingRightPos)
-			didInit = false;
-
-		if (myTransform)
+		private void Awake()
 		{
-			myStartPosition = myTransform.position;
+			base.Init();
 		}
-	}
 
-	private void Update()
-	{
-		if (canControl && didInit)
+		private void Start()
 		{
-			float horMove = inputController.GetHorizontal();
-			if (Mathf.Abs(horMove) > 0)
+			if (!inputController || !clippingLeftPos || !clippingRightPos)
+				didInit = false;
+
+			if (myTransform)
 			{
-				Vector3 newPos = myTransform.position + new Vector3(horMove * speedMove * Time.deltaTime, 0, 0);
-
-				newPos.x = Mathf.Clamp(newPos.x, clippingLeftPos.position.x, clippingRightPos.position.x);
-
-				myTransform.position = newPos;
+				myStartPosition = myTransform.position;
 			}
 		}
-	}
-	
-	public void CanControl(bool val)
-	{
-		canControl = val;
-	}
 
-	public void SetInStartPos()
-	{
-		myTransform.position = myStartPosition;
+		private void Update()
+		{
+			if (canControl && didInit)
+			{
+				float horMove = inputController.GetHorizontal();
+				if (Mathf.Abs(horMove) > 0)
+				{
+					Vector3 newPos = myTransform.position + new Vector3(horMove * speedMove * Time.deltaTime, 0, 0);
+
+					newPos.x = Mathf.Clamp(newPos.x, clippingLeftPos.position.x, clippingRightPos.position.x);
+
+					myTransform.position = newPos;
+				}
+			}
+		}
+	
+		public void CanControl(bool val)
+		{
+			canControl = val;
+		}
+
+		public void SetInStartPos()
+		{
+			myTransform.position = myStartPosition;
+		}
 	}
 }

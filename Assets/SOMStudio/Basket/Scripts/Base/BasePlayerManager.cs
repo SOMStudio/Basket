@@ -1,43 +1,46 @@
 using UnityEngine;
 
-public class BasePlayerManager : MonoBehaviour
+namespace SOMStudio.Basket.Scripts.Base
 {
-	[SerializeField] protected bool didInit = false;
-	
-	[SerializeField] protected BaseUserManager dataManager;
-	
-	private void Awake()
+	public class BasePlayerManager : MonoBehaviour
 	{
-		Init();
-	}
+		[SerializeField] protected bool didInit = false;
 	
-	public virtual void Init()
-	{
-		if (!dataManager)
+		[SerializeField] protected BaseUserManager dataManager;
+	
+		private void Awake()
 		{
-			dataManager = gameObject.GetComponent<BaseUserManager>();
-
-			if (!dataManager)
-				dataManager = gameObject.AddComponent<BaseUserManager>();
+			Init();
 		}
+	
+		public virtual void Init()
+		{
+			if (!dataManager)
+			{
+				dataManager = gameObject.GetComponent<BaseUserManager>();
+
+				if (!dataManager)
+					dataManager = gameObject.AddComponent<BaseUserManager>();
+			}
 		
-		dataManager.GetDefaultData();
+			dataManager.GetDefaultData();
 
-		didInit = true;
-	}
+			didInit = true;
+		}
 
-	public BaseUserManager GetDataManager()
-	{
-		return dataManager;
-	}
+		public BaseUserManager GetDataManager()
+		{
+			return dataManager;
+		}
 
-	public virtual void GameFinished()
-	{
-		dataManager.SetIsFinished(true);
-	}
+		public virtual void GameFinished()
+		{
+			dataManager.SetIsFinished(true);
+		}
 
-	public virtual void GameStart()
-	{
-		dataManager.SetIsFinished(false);
+		public virtual void GameStart()
+		{
+			dataManager.SetIsFinished(false);
+		}
 	}
 }

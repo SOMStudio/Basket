@@ -1,57 +1,60 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[AddComponentMenu("SOMStudio/Basket/Utility/FPS Counter")]
-public class FpsCounter : MonoBehaviour
+namespace SOMStudio.Basket.Scripts.Utility
 {
-	[Header("Settings")]
-	[SerializeField] private Text fpsText;
-	[SerializeField] private Text minFpsText;
-	[SerializeField] private Text maxFpsText;
+	[AddComponentMenu("SOMStudio/Basket/Utility/FPS Counter")]
+	public class FpsCounter : MonoBehaviour
+	{
+		[Header("Settings")]
+		[SerializeField] private Text fpsText;
+		[SerializeField] private Text minFpsText;
+		[SerializeField] private Text maxFpsText;
 
-	private const float FPSMeasurePeriod = 0.5f;
-	private int mFpsAccumulator;
-	private float mFpsNextPeriod;
-	private int mCurrentFps;
-	private int minFPS = -1;
-	private int maxFPS = -1;
+		private const float FPSMeasurePeriod = 0.5f;
+		private int mFpsAccumulator;
+		private float mFpsNextPeriod;
+		private int mCurrentFps;
+		private int minFPS = -1;
+		private int maxFPS = -1;
 	
-	private void Start()
-	{
-		mFpsNextPeriod = Time.realtimeSinceStartup + FPSMeasurePeriod;
-	}
-
-	private void Update()
-	{
-		mFpsAccumulator++;
-		if (Time.realtimeSinceStartup > mFpsNextPeriod)
+		private void Start()
 		{
-			mCurrentFps = (int)(mFpsAccumulator / FPSMeasurePeriod);
+			mFpsNextPeriod = Time.realtimeSinceStartup + FPSMeasurePeriod;
+		}
 
-			if (Time.realtimeSinceStartup > 20)
+		private void Update()
+		{
+			mFpsAccumulator++;
+			if (Time.realtimeSinceStartup > mFpsNextPeriod)
 			{
-				if (minFPS == -1)
+				mCurrentFps = (int)(mFpsAccumulator / FPSMeasurePeriod);
+
+				if (Time.realtimeSinceStartup > 20)
 				{
-					minFPS = mCurrentFps;
-					maxFPS = mCurrentFps;
-				}
-				else
-				{
-					if (minFPS > mCurrentFps)
+					if (minFPS == -1)
+					{
 						minFPS = mCurrentFps;
-					if (maxFPS < mCurrentFps)
 						maxFPS = mCurrentFps;
+					}
+					else
+					{
+						if (minFPS > mCurrentFps)
+							minFPS = mCurrentFps;
+						if (maxFPS < mCurrentFps)
+							maxFPS = mCurrentFps;
+					}
 				}
-			}
 
-			mFpsAccumulator = 0;
-			mFpsNextPeriod += FPSMeasurePeriod;
+				mFpsAccumulator = 0;
+				mFpsNextPeriod += FPSMeasurePeriod;
 
-			if (fpsText != null)
-			{
-				fpsText.text = $"FPS:{mCurrentFps}";
-				minFpsText.text = $"minFPS:{minFPS}";
-				maxFpsText.text = $"maxFPS:{maxFPS}";
+				if (fpsText != null)
+				{
+					fpsText.text = $"FPS:{mCurrentFps}";
+					minFpsText.text = $"minFPS:{minFPS}";
+					maxFpsText.text = $"maxFPS:{maxFPS}";
+				}
 			}
 		}
 	}

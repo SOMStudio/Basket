@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 
-[AddComponentMenu("SOMStudio/Basket/Drop Object Manager")]
-public class DropObjectManager : MonoBehaviour
+namespace SOMStudio.Basket.Scripts
 {
-	[SerializeField] private int bonus = 0;
-
-	private void Start()
+	[AddComponentMenu("SOMStudio/Basket/Drop Object Manager")]
+	public class DropObjectManager : MonoBehaviour
 	{
-		Destroy(gameObject, 2);
-	}
+		[SerializeField] private int bonus = 0;
 
-	private void OnTriggerEnter2D(Collider2D col)
-	{
-		if (col.CompareTag("Player"))
+		private void Start()
 		{
-			GameController.Instance.AddBonus(bonus);
+			Destroy(gameObject, 2);
+		}
 
-			Destroy(gameObject);
+		private void OnTriggerEnter2D(Collider2D col)
+		{
+			if (col.CompareTag("Player"))
+			{
+				GameController.Instance.AddBonus(bonus);
+
+				Destroy(gameObject);
+			}
 		}
 	}
 }

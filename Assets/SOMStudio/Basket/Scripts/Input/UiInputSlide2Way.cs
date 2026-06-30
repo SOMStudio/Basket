@@ -1,41 +1,45 @@
-﻿using UnityEngine;
+﻿using SOMStudio.Basket.Scripts.Base;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UiInputSlide2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler
+namespace SOMStudio.Basket.Scripts.Input
 {
-	[Header("Slide Clump")]
-	public float slideClump = 100f;
+	public class UiInputSlide2Way : BaseInputController, IPointerDownHandler, IDragHandler, IPointerUpHandler
+	{
+		[Header("Slide Clump")]
+		public float slideClump = 100f;
 
-	private Transform myTransform;
-	private Vector2 shiftClick;
-	private Vector2 startPosition;
+		private Transform myTransform;
+		private Vector2 shiftClick;
+		private Vector2 startPosition;
 	
-	private void Start()
-	{
-		myTransform = transform;
+		private void Start()
+		{
+			myTransform = transform;
 
-		startPosition = new Vector2(myTransform.position.x, myTransform.position.y);
-	}
+			startPosition = new Vector2(myTransform.position.x, myTransform.position.y);
+		}
 
-	public void OnPointerDown(PointerEventData data)
-	{
-		shiftClick = data.position - startPosition;
-	}
+		public void OnPointerDown(PointerEventData data)
+		{
+			shiftClick = data.position - startPosition;
+		}
 
-	public void OnDrag(PointerEventData data)
-	{
-		float distanceToPoint = Mathf.Clamp(data.position.x - startPosition.x, -slideClump, slideClump);
+		public void OnDrag(PointerEventData data)
+		{
+			float distanceToPoint = Mathf.Clamp(data.position.x - startPosition.x, -slideClump, slideClump);
 		
-		horizontal = distanceToPoint / slideClump;
+			horizontal = distanceToPoint / slideClump;
 		
-		myTransform.position = new Vector3(startPosition.x + distanceToPoint, myTransform.position.y,
-			myTransform.position.z);
-	}
+			myTransform.position = new Vector3(startPosition.x + distanceToPoint, myTransform.position.y,
+				myTransform.position.z);
+		}
 
-	public void OnPointerUp(PointerEventData data)
-	{
-		myTransform.position = new Vector3(startPosition.x, myTransform.position.y, myTransform.position.z);
+		public void OnPointerUp(PointerEventData data)
+		{
+			myTransform.position = new Vector3(startPosition.x, myTransform.position.y, myTransform.position.z);
 		
-		horizontal = 0f;
+			horizontal = 0f;
+		}
 	}
 }

@@ -1,71 +1,74 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[AddComponentMenu("SOMStudio/Basket/Menu Manager")]
-public class MenuManager : MonoBehaviour
+namespace SOMStudio.Basket.Scripts
 {
-	[Header("Game Settings")]
-	[SerializeField] private Text textTimer;
-
-	[SerializeField] private Text textScore;
-
-	[Header("Game Controller Ref")]
-	[SerializeField] private GameController gameController;
-
-	[System.NonSerialized] public static MenuManager Instance;
-
-	private void Awake()
+	[AddComponentMenu("SOMStudio/Basket/Menu Manager")]
+	public class MenuManager : MonoBehaviour
 	{
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-		else if (Instance != this)
-		{
-			Destroy(gameObject);
-		}
-	}
+		[Header("Game Settings")]
+		[SerializeField] private Text textTimer;
 
-	private void Start()
-	{
-		if (!gameController)
-		{
-			gameController = GameController.Instance;
-		}
-	}
+		[SerializeField] private Text textScore;
 
-	private void LateUpdate()
-	{
-		if (gameController)
+		[Header("Game Controller Ref")]
+		[SerializeField] private GameController gameController;
+
+		[System.NonSerialized] public static MenuManager Instance;
+
+		private void Awake()
 		{
-			if (Input.GetKeyDown(KeyCode.Escape))
+			if (Instance == null)
 			{
-				gameController.PauseGame();
+				Instance = this;
+			}
+			else if (Instance != this)
+			{
+				Destroy(gameObject);
 			}
 		}
-	}
+
+		private void Start()
+		{
+			if (!gameController)
+			{
+				gameController = GameController.Instance;
+			}
+		}
+
+		private void LateUpdate()
+		{
+			if (gameController)
+			{
+				if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+				{
+					gameController.PauseGame();
+				}
+			}
+		}
 	
-	public void UpdateScore(int val)
-	{
-		if (textScore)
+		public void UpdateScore(int val)
 		{
-			textScore.text = val.ToString();
+			if (textScore)
+			{
+				textScore.text = val.ToString();
+			}
 		}
-	}
 
-	public void UpdateTimer(string val)
-	{
-		if (textTimer)
+		public void UpdateTimer(string val)
 		{
-			textTimer.text = val;
+			if (textTimer)
+			{
+				textTimer.text = val;
+			}
 		}
-	}
 
-	public void RestartGame()
-	{
-		if (gameController)
+		public void RestartGame()
 		{
-			gameController.RestartGame();
+			if (gameController)
+			{
+				gameController.RestartGame();
+			}
 		}
 	}
 }
